@@ -1,0 +1,27 @@
+{% extends 'reviews/mylayout.html' %}
+{% block title %}Login or Register{% endblock %}
+{% block header %}Login or Register{% endblock %}
+{% block content %}
+<div class="mdl-grid">
+{% with form=reg_form %}
+<div class="mdl-cell mdl-cell--6-col">
+<h1>Register</h1>
+<form action="{% url 'auth:register' %}" method="post">
+  {% csrf_token %}
+  {% include 'auth/form.html' %}
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="button">Register</button>
+</form>
+</div>
+{% endwith %}
+{% with form=login_form %}
+<div class="mdl-cell mdl-cell--6-col">
+<h1>Login</h1>
+<form action="{% url 'auth:login' %}" method="post">
+  {% csrf_token %}
+  {% include 'auth/form.html' %}
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="button">Register</button>
+</form>
+</div>
+{% endwith %}
+</div>
+{% endblock %}
