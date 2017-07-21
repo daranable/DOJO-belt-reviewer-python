@@ -1,0 +1,26 @@
+{% extends 'reviews/mylayout.html' %}
+{% block title %}Reviews - {{book.name}}{% endblock %}
+{% block header %}{{book.name}} - {{book.author.full_name}}{% endblock %}
+{% block content %}
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--8-col">
+    <h3>Reviews</h3>
+    {% for review in book.reviews.all %}
+      <span class="rating">Rating: {{review.stars}}</span>
+      <p>
+        <a href="{% url 'review:user_profile' id=review.user.id %}">{{review.user.first_name}} {{review.user.last_name}}</a>
+        says: {{review.review}}
+      </p>
+      <p>Posted on {{review.created_at}}</p>
+    {% endfor %}
+  </div>
+  <div class="mdl-cell mdl-cell--4-col">
+    <form method="post">
+      {% csrf_token %}
+      {% include 'reviews/form.html' %}
+      <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" name="button">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

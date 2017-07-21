@@ -11,6 +11,11 @@ class Author(models.Model):
         MinLengthValidator(2)
     ])
     full_name = property(lambda u: '{} {}'.format(u.first_name, u.last_name))
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ('first_name', 'last_name')
+
+    def __unicode__(self):
+        return self.full_name

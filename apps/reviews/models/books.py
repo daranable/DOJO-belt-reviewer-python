@@ -10,3 +10,5 @@ class Book(models.Model):
         MinLengthValidator(4)
     ])
     author = models.ForeignKey(Author, related_name='books')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

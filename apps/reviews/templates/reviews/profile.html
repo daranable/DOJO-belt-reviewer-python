@@ -1,0 +1,25 @@
+{% extends 'reviews/mylayout.html' %}
+{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
+{% block header %}{{user.first_name}} {{user.last_name}}{% endblock %}
+{% block customnav %}
+<a class="mdl-navigation__link" href="{% url 'review:landing' %}">Home</a>
+<a class="mdl-navigation__link" href="{% url 'review:add_all' %}">Add Book and Review</a>
+{% endblock %}
+{% block content %}
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <ul>
+      <li>User alias: {{user.first_name}}</li>
+      <li>Name: {{user.first_name}} {{user.last_name}}</li>
+      <li>Email: {{user.email}}</li>
+      <li>Total Reviews: {{review_count}}</li>
+    </ul>
+    <h3>Posted Reviews on the following books:</h3>
+    <ul>
+      {% for book in books %}
+      <li><a href="{% url 'review:book' id=book.id %}">{{book.name}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 {% block nav %}
-<a class="mdl-navigation__link" href="">Link Mine</a>
-<a class="mdl-navigation__link" href="">Link Yours</a>
+{% block customnav %}
+<a class="mdl-navigation__link" href="{% url 'review:landing' %}">Home</a>
+{% endblock %}
+<a class="mdl-navigation__link" href="{% url 'auth:logout' %}">Logout</a>
 {% endblock %}

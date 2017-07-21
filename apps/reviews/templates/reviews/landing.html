@@ -1,0 +1,30 @@
+{% extends 'reviews/mylayout.html' %}
+{% block title %}Books Home{% endblock %}
+{% block header %}Welcome, {{request.session.user.first_name}}{% endblock %}
+{% block customnav %}
+  <a href="{% url 'review:add_all' %}" class='mdl-navigation__link'>Add Book and Review</a>
+{% endblock %}
+{% block content %}
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--8-col">
+    <h1>Recent Book Reviews</h1>
+    {% for review in recent_reviews %}
+      <h3><a href="{% url 'review:book' id=review.book.id %}">{{review.book.name}}</a></h3>
+      <span class="rating">Rating: {{review.stars}}</span>
+      <p>
+        <a href="{% url 'review:user_profile' id=review.user.id %}">{{review.user.first_name}} {{review.user.last_name}}</a>
+        says: {{review.review}}
+      </p>
+      <p>Posted on {{review.created_at}}</p>
+    {% endfor %}
+  </div>
+  <div class="mdl-cell mdl-cell--4-col">
+    <h2>All books with reviews</h2>
+    <div style="height:50vh; overflow: auto;">
+    {% for book in all_books %}
+    <p><a href="{% url 'review:book' id=book.id %}">{{book.name}}</a></p>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

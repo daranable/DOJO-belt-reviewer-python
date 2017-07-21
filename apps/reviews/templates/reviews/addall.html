@@ -1,0 +1,14 @@
+{% extends 'reviews/mylayout.html' %}
+{% block title %}Add Book and Review{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <form method="post">
+      {% csrf_token %}
+      {% include 'reviews/form.html' %}
+      <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" name="button">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
