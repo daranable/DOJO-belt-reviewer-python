@@ -1,0 +1,3 @@
+[submodule "apps/log_reg"]
+	path = apps/log_reg
+	url = git@github.com:daranable/django-login-reg-app.git
